@@ -1,23 +1,10 @@
 from rest_framework import serializers
-from chat.models import (
-    Message,
-    ThreadMember,
-    MessageAction,
-    ThreadAction,
-    ForwardedMessage,
-    Thread,
-)
+from chat.models import Thread, ThreadAction, ThreadMember
 
 
 class ThreadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Thread
-        fields = "__all__"
-
-
-class ForwardedMessageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ForwardedMessage
         fields = "__all__"
 
 
@@ -30,16 +17,4 @@ class ThreadMemberSerializer(serializers.ModelSerializer):
 class ThreadActionSerializer(serializers.ModelSerializer):
     class Meta:
         model = ThreadAction
-        fields = "__all__"
-
-
-class MessageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Message
-        fields = "__all__"
-
-
-class MessageActionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MessageAction
         fields = "__all__"

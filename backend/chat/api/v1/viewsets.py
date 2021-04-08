@@ -1,19 +1,9 @@
 from rest_framework import authentication
-from chat.models import (
-    Message,
-    ThreadMember,
-    MessageAction,
-    ThreadAction,
-    ForwardedMessage,
-    Thread,
-)
+from chat.models import Thread, ThreadAction, ThreadMember
 from .serializers import (
-    MessageSerializer,
-    ThreadMemberSerializer,
-    MessageActionSerializer,
-    ThreadActionSerializer,
-    ForwardedMessageSerializer,
     ThreadSerializer,
+    ThreadActionSerializer,
+    ThreadMemberSerializer,
 )
 from rest_framework import viewsets
 
@@ -25,15 +15,6 @@ class ThreadViewSet(viewsets.ModelViewSet):
         authentication.TokenAuthentication,
     )
     queryset = Thread.objects.all()
-
-
-class ForwardedMessageViewSet(viewsets.ModelViewSet):
-    serializer_class = ForwardedMessageSerializer
-    authentication_classes = (
-        authentication.SessionAuthentication,
-        authentication.TokenAuthentication,
-    )
-    queryset = ForwardedMessage.objects.all()
 
 
 class ThreadMemberViewSet(viewsets.ModelViewSet):
@@ -52,21 +33,3 @@ class ThreadActionViewSet(viewsets.ModelViewSet):
         authentication.TokenAuthentication,
     )
     queryset = ThreadAction.objects.all()
-
-
-class MessageViewSet(viewsets.ModelViewSet):
-    serializer_class = MessageSerializer
-    authentication_classes = (
-        authentication.SessionAuthentication,
-        authentication.TokenAuthentication,
-    )
-    queryset = Message.objects.all()
-
-
-class MessageActionViewSet(viewsets.ModelViewSet):
-    serializer_class = MessageActionSerializer
-    authentication_classes = (
-        authentication.SessionAuthentication,
-        authentication.TokenAuthentication,
-    )
-    queryset = MessageAction.objects.all()
